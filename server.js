@@ -20,6 +20,18 @@ const { ensureAuthenticated } = require('./middleware/auth'); // Import middlewa
 
 const app = express(); // Ensure app initialization is here
 
+const passport = require('passport');
+const GitHubStrategy = require('passport-github2').Strategy;
+
+passport.use(new GitHubStrategy({
+  clientID: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET,
+  callbackURL: process.env.CALLBACK_URL
+}, function(accessToken, refreshToken, profile, done) {
+  // You can store user info here or just pass it through
+  return done(null, profile);
+}));
+
 // Enable trusting proxy headers - Important for environments like Render
 app.set('trust proxy', 1); // Trust first proxy
 
