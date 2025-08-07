@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recipes</title>
+</head>
+<body>
+    <h1>Recipes</h1>
+    <a href="/logout">Logout</a>
+    <ul id="recipes">
+    </ul>
+    <script>
+        fetch('/api/recipes')
+            .then(response => response.json())
+            .then(recipes => {
+                const recipesList = document.getElementById('recipes');
+                recipes.forEach(recipe => {
+                    const li = document.createElement('li');
+                    li.textContent = recipe.title;
+                    recipesList.appendChild(li);
+                });
+            });
+    </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+@baseUrl = http://localhost:3000
+
+### Get Current User (Requires browser login first)
+# Send this request *after* logging in via GitHub in your browser.
+# The browser's session cookie will be automatically included by the REST Client extension (usually).
+GET {{baseUrl}}/api/user/me
+
+### Logout (Requires browser login first)
+# Send this request *after* logging in via GitHub in your browser.
+GET {{baseUrl}}/auth/logout
+
+### (Informational) Initiate GitHub Login (Browser Only)
+# This endpoint must be accessed via a browser to initiate the OAuth flow.
+# GET {{baseUrl}}/auth/github
+
+### (Informational) GitHub Callback (Browser Only)
+# GitHub redirects the browser to this endpoint after authorization.
+# GET {{baseUrl}}/auth/github/callback

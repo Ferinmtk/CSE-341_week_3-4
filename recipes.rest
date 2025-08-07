@@ -1,0 +1,88 @@
+@baseUrl = http://localhost:3000
+@recipeId = # Replace with an actual recipe ID after creating one
+@ingredientId1 = # Replace with a valid Ingredient ID from your DB
+@ingredientId2 = # Replace with another valid Ingredient ID
+
+### Get All Recipes (Requires browser login first)
+# Ensure you are logged in via the browser before sending.
+GET {{baseUrl}}/api/recipes
+
+### Create New Recipe (Requires browser login first)
+# Ensure you are logged in via the browser before sending.
+# Replace ingredient IDs with valid ones from your database.
+POST {{baseUrl}}/api/recipes
+Content-Type: application/json
+
+{
+  "title": "Simple Pasta Dish",
+  "description": "A quick and easy pasta dish.",
+  "ingredients": [
+    {
+      "ingredient": "{{ingredientId1}}", 
+      "quantity": 200,
+      "unit": "g"
+    },
+    {
+      "ingredient": "{{ingredientId2}}",
+      "quantity": 1,
+      "unit": "piece"
+    }
+  ],
+  "instructions": [
+    "Boil pasta according to package directions.",
+    "While pasta cooks, prepare the sauce.",
+    "Drain pasta and mix with sauce.",
+    "Serve immediately."
+  ],
+  "prepTime": 10,
+  "cookTime": 15,
+  "servings": 2,
+  "difficulty": "Easy"
+}
+
+
+### Get Recipe by ID (Requires browser login first)
+# Replace {{recipeId}} with a valid ID obtained from GET all or POST.
+# Ensure you are logged in via the browser before sending.
+GET {{baseUrl}}/api/recipes/{{recipeId}}
+
+
+### Update Recipe by ID (Requires browser login first)
+# Replace {{recipeId}} with a valid ID.
+# Replace ingredient IDs with valid ones.
+# Ensure you are logged in via the browser before sending.
+PUT {{baseUrl}}/api/recipes/{{recipeId}}
+Content-Type: application/json
+
+{
+  "title": "Updated Simple Pasta Dish",
+  "description": "An updated version of the quick pasta dish.",
+   "ingredients": [
+    {
+      "ingredient": "{{ingredientId1}}", 
+      "quantity": 250, # Updated quantity
+      "unit": "g"
+    },
+    {
+      "ingredient": "{{ingredientId2}}",
+      "quantity": 2, # Updated quantity
+      "unit": "piece"
+    }
+  ],
+  "instructions": [
+    "Boil pasta.",
+    "Prepare sauce.",
+    "Combine pasta and sauce.",
+    "Garnish and serve." # Updated instruction
+  ],
+  "prepTime": 12, # Updated time
+  "cookTime": 18, # Updated time
+  "servings": 3, # Updated servings
+  "difficulty": "Medium" # Updated difficulty
+}
+
+
+### Delete Recipe by ID (Requires browser login first)
+# Replace {{recipeId}} with a valid ID.
+# Ensure you are logged in via the browser before sending.
+DELETE {{baseUrl}}/api/recipes/{{recipeId}}

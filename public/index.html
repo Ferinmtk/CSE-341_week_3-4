@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe API</title>
+</head>
+<body>
+    <h1>Welcome to Recipe API</h1>
+
+    <div id="auth-status">
+        <!-- Content will be dynamically updated -->
+        <a href="/auth/github">Login with GitHub</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const authStatusDiv = document.getElementById('auth-status');
+
+            try {
+                const response = await fetch('/auth/api/auth/status'); // Corrected endpoint path
+
+                if (!response.ok) {
+                    // If response is not OK (e.g., 401 Unauthorized), user is not logged in
+                    if (response.status === 401) {
+                         console.log('User not authenticated.');
+                         // Ensure login link is shown (it's the default HTML)
+                         authStatusDiv.innerHTML = '<a href="/auth/github">Login with GitHub</a>';
+                    } else {
+                        // Handle other potential errors
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return; // Exit early if not logged in
+                }
+
+                const data = await response.json();
+
+                if (data.loggedIn && data.user) {
+                    // User is logged in
+                    const displayName = data.user.displayName || data.user.username || 'User'; // Prefer display name, fallback to username
+                    authStatusDiv.innerHTML = `
+                        <p>Welcome, ${displayName}!
+                           <a href="/auth/logout">Logout</a>  
+                        </p>
+                        <p><a href="/recipes.html">View Recipes</a></p> 
+                    `;
+                } else {
+                     // Should not happen if response.ok is true, but handle defensively
+                     console.log('User data indicates not logged in, showing login link.');
+                     authStatusDiv.innerHTML = '<a href="/auth/github">Login with GitHub</a>';
+                }
+
+            } catch (error) {
+                // Network error or other fetch issue
+                console.error('Error fetching auth status:', error);
+                authStatusDiv.innerHTML = '<p>Error loading user status. <a href="/auth/github">Login with GitHub</a></p>';
+            }
+        });
+    </script>
+</body>
+</html>

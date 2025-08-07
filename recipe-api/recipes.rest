@@ -1,0 +1,38 @@
+# Recipes API Tests
+
+### Get all recipes
+GET http://localhost:3000/api/recipes
+
+### Create a new recipe
+POST http://localhost:3000/api/recipes
+Content-Type: application/json
+
+{
+  "title": "Salad",
+  "description": "Healthy salad",
+  "ingredients": [],
+  "instructions": [
+    "Wash vegetables",
+    "Cut vegetables",
+    "Mix vegetables"
+  ],
+  "prepTime": 10,
+  "cookTime": 0,
+  "servings": 1,
+  "difficulty": "Easy"
+}
+
+### Get a recipe by ID
+GET http://localhost:3000/api/recipes/67e567e8086b5d87117290b3 # Replace with actual ID
+
+### Update a recipe
+PUT http://localhost:3000/api/recipes/67e567e8086b5d87117290b3 # Replace with actual ID
+Content-Type: application/json
+
+{
+  "title": "Salad Updated",
+  "description": "Even healthier salad"
+}
+
+### Delete a recipe
+DELETE http://localhost:3000/api/recipes/67e567e8086b5d87117290b3 # Replace with actual ID

@@ -1,0 +1,55 @@
+@baseUrl = http://localhost:3000
+@ingredientId = # Replace with an actual ingredient ID after creating one
+
+### Get All Ingredients (Requires browser login first)
+# Ensure you are logged in via the browser before sending.
+GET {{baseUrl}}/api/ingredients
+
+### Create New Ingredient (Requires browser login first)
+# Ensure you are logged in via the browser before sending.
+POST {{baseUrl}}/api/ingredients
+Content-Type: application/json
+
+{
+  "name": "Organic Tomato",
+  "category": "Vegetables",
+  "nutritionalValue": {
+    "calories": 18,
+    "protein": 0.9,
+    "carbohydrates": 3.9,
+    "fat": 0.2
+  },
+  "isAllergenic": false,
+  "shelfLife": 7,
+  "storageInstructions": "Store at room temperature or refrigerate."
+}
+
+### Get Ingredient by ID (Requires browser login first)
+# Replace {{ingredientId}} with a valid ID obtained from GET all or POST.
+# Ensure you are logged in via the browser before sending.
+GET {{baseUrl}}/api/ingredients/{{ingredientId}}
+
+### Update Ingredient by ID (Requires browser login first)
+# Replace {{ingredientId}} with a valid ID.
+# Ensure you are logged in via the browser before sending.
+PUT {{baseUrl}}/api/ingredients/{{ingredientId}}
+Content-Type: application/json
+
+{
+  "name": "Ripe Organic Tomato",
+  "category": "Fruits", # Example update
+  "nutritionalValue": {
+    "calories": 20,
+    "protein": 1.0,
+    "carbohydrates": 4.0,
+    "fat": 0.2
+  },
+  "isAllergenic": false,
+  "shelfLife": 5, # Example update
+  "storageInstructions": "Refrigerate after ripening."
+}
+
+### Delete Ingredient by ID (Requires browser login first)
+# Replace {{ingredientId}} with a valid ID.
+# Ensure you are logged in via the browser before sending.
+DELETE {{baseUrl}}/api/ingredients/{{ingredientId}}

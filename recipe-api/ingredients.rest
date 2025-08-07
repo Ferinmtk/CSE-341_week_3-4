@@ -1,0 +1,36 @@
+# Ingredients API Tests
+
+### Get all ingredients
+GET http://localhost:3000/api/ingredients
+
+### Create a new ingredient
+POST http://localhost:3000/api/ingredients
+Content-Type: application/json
+
+{
+  "name": "Cucumber",
+  "category": "Vegetables",
+  "nutritionalValue": {
+    "calories": 15,
+    "protein": 0.7,
+    "carbohydrates": 3.6,
+    "fat": 0.1
+  },
+  "shelfLife": 5,
+  "storageInstructions": "Refrigerate"
+}
+
+### Get an ingredient by ID
+GET http://localhost:3000/api/ingredients/67e567bf086b5d87117290a5 # Replace with actual ID
+
+### Update an ingredient
+PUT http://localhost:3000/api/ingredients/67e567bf086b5d87117290a5 # Replace with actual ID
+Content-Type: application/json
+
+{
+  "name": "Cucumber Updated",
+  "shelfLife": 7
+}
+
+### Delete an ingredient
+DELETE http://localhost:3000/api/ingredients/67e567bf086b5d87117290a5 # Replace with actual ID
