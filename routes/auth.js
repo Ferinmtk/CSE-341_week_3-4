@@ -13,15 +13,15 @@ const router = express.Router();
 // console.log('GITHUB_CALLBACK_URL (in auth.js):', process.env.GITHUB_CALLBACK_URL);
 
 // Check if required variables are present
-if (!process.env.GITHUB_CLIENT_ID || !process.env.GITHUB_CLIENT_SECRET || !process.env.GITHUB_CALLBACK_URL) {
+if (!process.env.CLIENT_ID || !process.env.CLIENT_SECRET || !process.env.GITHUB_CALLBACK_URL) {
   console.error("Error: Missing required GitHub OAuth environment variables (CLIENT_ID, CLIENT_SECRET, CALLBACK_URL).");
   // Optionally, throw an error or exit if these are critical for startup
   // throw new Error("Missing GitHub OAuth environment variables."); 
 } else {
   passport.use(new GitHubStrategy({
-    clientID: process.env.GITHUB_CLIENT_ID,
-    clientSecret: process.env.GITHUB_CLIENT_SECRET,
-    callbackURL: process.env.GITHUB_CALLBACK_URL
+    clientID: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
+    callbackURL: process.env.CALLBACK_URL
   }, (accessToken, refreshToken, profile, done) => {
     // In a real app, you would find or create a user in your database here
     // For this example, we just pass the GitHub profile directly
