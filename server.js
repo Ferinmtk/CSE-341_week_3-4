@@ -20,7 +20,7 @@ const { ensureAuthenticated } = require('./middleware/auth'); // Import middlewa
 
 const app = express(); // Ensure app initialization is here
 
-const passport = require('passport');
+
 const GitHubStrategy = require('passport-github2').Strategy;
 
 passport.use(new GitHubStrategy({
